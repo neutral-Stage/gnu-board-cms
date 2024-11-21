@@ -32,7 +32,7 @@ $is_megamenu = 'yes';
 
     <?php /*----- header 시작 -----*/ ?>
     <header class="header-wrap <?php if(!defined('_INDEX_')) { ?>page-header-wrap<?php } ?>">
-        <div class="top-header">
+        <!-- <div class="top-header">
             <div class="container">
                 <div class="row align-items-center position-relative">
                     <div class="col-lg-6 d-none d-lg-block">
@@ -73,7 +73,7 @@ $is_megamenu = 'yes';
                             <li><a href="<?php echo G5_BBS_URL ?>/register.php"><i class="fas fa-user-plus"></i>회원가입</a></li>
                             <?php }  ?>
                             <li class="dropdown">
-                                <a class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-plus-circle"></i>추가메뉴
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -90,9 +90,9 @@ $is_megamenu = 'yes';
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="header-title">
-            <div class="container">
+            <div class="container header-container">
                 <?php /* ===== 사이트 로고 시작 ===== */ ?>
                 <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
                 <div class="adm-edit-btn btn-edit-mode" style="top:0;left:12px;text-align:left">
@@ -124,37 +124,62 @@ $is_megamenu = 'yes';
                 <?php } ?>
                 </a>
                 <?php /* ===== 사이트 로고 끝 ===== */ ?>
+                <div class="header-right-side">
+                    
+                    <div class="header-title-btn">
+                                        <div class="title-btn">
+                                            <a <?php if ($is_member) { ?>href="<?php echo G5_URL; ?>/?<?php echo $member['mb_id']; ?>"<?php } else { ?>href="javascript:void(0);" onclick="alert('회원만 접근하실 수 있습니다.');"<?php } ?>>
+                                                마이홈
+                                            </a>
+                                        </div>
+                                        <div class="title-btn">
+                                            <a <?php if ($is_member) { ?>href="<?php echo G5_URL; ?>/mypage/"<?php } else { ?>href="javascript:void(0);" onclick="alert('회원만 접근하실 수 있습니다.');"<?php } ?>>
+                                            마이페이지
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <ul class="top-header-nav list-unstyled">
+                            <?php if ($is_member) {  ?>
+                                <?php if ($is_admin) {  ?>
+                            <li><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>"></i>관리자</a></li>
+                                <?php }  ?>
+                            <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
+                            <?php } else {  ?>
+                            <li><a href="<?php echo G5_BBS_URL ?>/login.php">로그인</a></li>
+                            <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
+                            <?php }  ?>
+                            <li class="dropdown">
+                                <a id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    추가메뉴 <i class="fas fa-chevron-down"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a href="<?php echo G5_BBS_URL ?>/new.php">새글</a>
+                                    <a href="<?php echo G5_BBS_URL ?>/best.php">인기게시물</a>
+                                    <a href="<?php echo G5_BBS_URL ?>/faq.php">자주묻는 질문</a>
+                                    <a href="<?php echo G5_BBS_URL ?>/qalist.php">1:1문의</a>
+                                    <?php if ($is_member) { // 회원일 경우 ?>
+                                    <a href="<?php echo G5_BBS_URL; ?>/member_confirm.php?url=register_form.php">회원정보수정</a>
+                                    <?php } ?>
+                                </div>
+                            </li>
+                        </ul>
+                                    <div class="header-title-search d-none d-lg-block">
+                                        <form name="fsearchbox" method="get" action="<?php echo G5_BBS_URL; ?>/search.php" onsubmit="return fsearchbox_submit(this);" class="eyoom-form">
+                                        <input type="hidden" name="sfl" value="wr_subject||wr_content">
+                                        <input type="hidden" name="sop" value="and">
+                                        <label for="modal_sch_stx" class="sound_only"><strong>검색어 입력 필수</strong></label>
+                                        <div class="input input-button">
+                                            <input type="text" name="stx" id="modal_sch_stx" class="sch_stx" maxlength="20" placeholder="전체 게시판 검색">
+                                            <div class="search-btn button"><input type="submit"><i class="fas fa-search"></i></div>
+                                        </div>
+                                        </form>
+                    </div>
 
-                <div class="header-title-search d-none d-lg-block">
-                    <form name="fsearchbox" method="get" action="<?php echo G5_BBS_URL; ?>/search.php" onsubmit="return fsearchbox_submit(this);" class="eyoom-form">
-                    <input type="hidden" name="sfl" value="wr_subject||wr_content">
-                    <input type="hidden" name="sop" value="and">
-                    <label for="modal_sch_stx" class="sound_only"><strong>검색어 입력 필수</strong></label>
-                    <div class="input input-button">
-                        <input type="text" name="stx" id="modal_sch_stx" class="sch_stx" maxlength="20" placeholder="전체 게시판 검색">
-                        <div class="button"><input type="submit"><i class="fas fa-search"></i></div>
-                    </div>
-                    </form>
+                    
                 </div>
+             
 
-                <div class="header-title-btn">
-                    <div class="title-btn">
-                        <a <?php if ($is_member) { ?>href="<?php echo G5_URL; ?>/?<?php echo $member['mb_id']; ?>"<?php } else { ?>href="javascript:void(0);" onclick="alert('회원만 접근하실 수 있습니다.');"<?php } ?>>
-                            <div class="title-btn-in">
-                                <span class="title-btn-text">마이홈</span>
-                                <i class="fas fa-caret-square-right"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="title-btn">
-                        <a <?php if ($is_member) { ?>href="<?php echo G5_URL; ?>/mypage/"<?php } else { ?>href="javascript:void(0);" onclick="alert('회원만 접근하실 수 있습니다.');"<?php } ?>>
-                            <div class="title-btn-in title-btn-navy">
-                                <span class="title-btn-text">마이페이지</span>
-                                <i class="fas fa-caret-square-right"></i>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+               
 
                 <div class="header-title-mobile-btn">
                     <button type="button" class="navbar-toggler search-toggle mobile-search-btn">
@@ -241,7 +266,102 @@ $is_megamenu = 'yes';
                                     </div>
                                 </div>
                                 <?php } ?>
-                                <li class="navbar-nav-home">
+                                <?php if ($is_megamenu == 'yes') { ?>
+                                <!-- <li class="dropdown dropdown-mega-menu d-none d-lg-block"> -->
+                                <li class="dropdown mega-dropdown" style="margin-left:-0.5rem;">
+    <a data-bs-toggle="dropdown" class="nav-link dropdown-toggle" href="#">
+        <i style="margin-right:0.5rem;" class="fas fa-bars mr-4"></i> 전체상품
+    </a>
+    <div class="dropdown-menu mega-dropdown-menu">
+        <div class="mega-menu-columns">
+           <!-- First Column -->
+<!-- First Column -->
+<div class="mega-menu-column">
+    <ul class="list-unstyled">
+    <?php 
+    if (is_array($menu)) {
+        foreach ($menu as $key => $menu_1) { 
+            $is_active = isset($menu_1['active']) && $menu_1['active'];
+            $has_submenu = isset($menu_1['submenu']) && is_array($menu_1['submenu']) && !empty($menu_1['submenu']); ?>
+            <li>
+                <a href="<?php echo $menu_1['me_link']; ?>" 
+                   class="mega-menu-item <?php echo $is_active ? 'active' : ''; ?>" 
+                   data-menu-id="menu_<?php echo $key; ?>">
+                    <?php echo $menu_1['me_name']; ?>
+                    <?php if ($has_submenu) { ?>
+                        <i class="fas fa-chevron-right submenu-arrow"></i>
+                    <?php } ?>
+                </a>
+            </li>
+        <?php 
+        }
+    } 
+    ?>
+    </ul>
+</div>
+
+<!-- Second Column -->
+<div class="mega-menu-column">
+    <?php 
+    if (is_array($menu)) {
+        foreach ($menu as $key => $menu_1) {
+            if (isset($menu_1['submenu']) && is_array($menu_1['submenu'])) { ?>
+                <ul class="list-unstyled submenu-list" data-parent="menu_<?php echo $key; ?>">
+                <?php foreach ($menu_1['submenu'] as $subkey => $menu_2) { 
+                    $is_active = isset($menu_2['active']) && $menu_2['active'];
+                    $has_subsub = isset($menu_2['subsub']) && is_array($menu_2['subsub']) && !empty($menu_2['subsub']); ?>
+                    <li>
+                        <a href="<?php echo $menu_2['me_link']; ?>" 
+                           class="mega-menu-item <?php echo $is_active ? 'active' : ''; ?>"
+                           data-submenu-id="submenu_<?php echo $key; ?>_<?php echo $subkey; ?>">
+                            <?php echo $menu_2['me_name']; ?>
+                            <?php if ($has_subsub) { ?>
+                                <i class="fas fa-chevron-right submenu-arrow"></i>
+                            <?php } ?>
+                        </a>
+                    </li>
+                <?php } ?>
+                </ul>
+            <?php 
+            }
+        }
+    } 
+    ?>
+</div>
+<!-- Third Column -->
+<div class="mega-menu-column">
+    <?php 
+    if (is_array($menu)) {
+        foreach ($menu as $key => $menu_1) {
+            if (isset($menu_1['submenu']) && is_array($menu_1['submenu'])) {
+                foreach ($menu_1['submenu'] as $subkey => $menu_2) {
+                    if (isset($menu_2['subsub']) && is_array($menu_2['subsub'])) { ?>
+                        <ul class="list-unstyled subsubmenu-list" 
+                            data-parent-sub="submenu_<?php echo $key; ?>_<?php echo $subkey; ?>">
+                            <?php foreach ($menu_2['subsub'] as $ssubkey => $menu_3) { 
+                                $is_active = isset($menu_3['active']) && $menu_3['active'];
+                                $has_deep_submenu = isset($menu_3['deep_submenu']) && is_array($menu_3['deep_submenu']) && !empty($menu_3['deep_submenu']); ?>
+                                <li>
+                                    <a href="<?php echo $menu_3['me_link']; ?>" 
+                                       class="mega-menu-item <?php echo $is_active ? 'active' : ''; ?>">
+                                        <?php echo $menu_3['me_name']; ?>
+                                        <?php if ($has_deep_submenu) { ?>
+                                            <i class="fas fa-chevron-right submenu-arrow"></i>
+                                        <?php } ?>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    <?php 
+                    }
+                }
+            }
+        }
+    } 
+    ?>
+</li>
+                                <?php } ?>
+                                <li class="navbar-nav-home top-header-nav">
                                     <a href="<?php echo G5_URL ?>" class="nav-link">HOME</a>
                                 </li>
 
@@ -313,50 +433,7 @@ $is_megamenu = 'yes';
                                 <?php } ?>
                                 <?php } ?>
                                         
-                                <?php if ($is_megamenu == 'yes') { ?>
-                                <li class="dropdown dropdown-mega-menu d-none d-lg-block">
-                                    <a data-bs-toggle="dropdown" class="nav-link dropdown-toggle" href="#"><i class="fas fa-bars"></i></a>
-                                    <div class="dropdown-menu">
-                                        <ul class="mega-menu d-lg-flex">
-                                        <?php if (is_array($menu)) { ?>
-                                            <?php foreach ($menu as $key => $menu_1) { ?>
-                                            <li class="mega-menu-col">
-                                            <h5><a href="<?php echo $menu_1['me_link']; ?>" target="_<?php echo $menu_1['me_target']; ?>" class="<?php if ($menu_1['active']) echo 'active';?>"><?php echo $menu_1['me_name']?></a></h5>
-                                                <?php $index2 = $size2 = 0; ?>
-                                                <?php if (isset($menu_1['submenu']) && is_array($menu_1['submenu'])) { $size2 = count($menu_1['submenu']); ?>
-                                                <?php foreach ($menu_1['submenu'] as $subkey => $menu_2) { ?>
-                                                <?php if ($index2 == 0) { ?>
-                                                <ul>
-                                                <?php } ?>
-                                                    <li>
-                                                        <a href="<?php echo $menu_2['me_link']; ?>" target="_<?php echo $menu_2['me_target']; ?>" class="mega-menu-item <?php if ($menu_2['active']) echo 'active';?>"><?php echo $menu_2['me_name']; ?></a>
-                                                        <?php $index3 = $size3 = 0; ?>
-                                                        <?php if (isset($menu_2['subsub']) && is_array($menu_2['subsub'])) { $size3 = count($menu_2['subsub']); ?>
-                                                        <?php foreach ($menu_2['subsub'] as $ssubkey => $menu_3) { ?>
-                                                        <?php if ($index3 == 0) { ?>
-                                                        <ul class="menu3-ul">
-                                                        <?php } ?>
-                                                            <li>
-                                                                <a href="<?php echo $menu_3['me_link']; ?>" target="_<?php echo $menu_3['me_target']; ?>" class="mega-menu-item <?php if (isset($menu_3['active']) && $menu_3['active']) echo 'active';?>"><?php echo $menu_3['me_name']; ?></a>
-                                                            </li>
-                                                        <?php if ($index3 == $size3 - 1) { ?>
-                                                        </ul>
-                                                        <?php } ?>
-                                                        <?php $index3++; } ?>
-                                                        <?php } ?>
-                                                    </li>
-                                                <?php if ($index2 == $size2 - 1) { ?>
-                                                </ul>
-                                                <?php } ?>
-                                                <?php $index2++; } ?>
-                                                <?php } ?>
-                                            </li>
-                                            <?php } ?>
-                                        <?php } ?>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <?php } ?>
+                               
                             </ul>
                         </div>
                     </div>

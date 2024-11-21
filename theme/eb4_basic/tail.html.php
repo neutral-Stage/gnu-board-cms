@@ -29,9 +29,7 @@ if (!defined('_EYOOM_')) exit;
 		<div class="container">
 			<div class="footer-top">
 				<div class="footer-nav">
-					<a href="<?php echo get_eyoom_pretty_url('page','provision'); ?>">서비스이용약관</a>
-					<a href="<?php echo get_eyoom_pretty_url('page','privacy'); ?>">개인정보처리방침</a>
-					<a href="<?php echo get_eyoom_pretty_url('page','noemail'); ?>">이메일무단수집거부</a>
+					<img src="<?php echo $logo_src['bottom']; ?>" class="site-logo" alt="<?php echo $config['cf_title']; ?>">
 				</div>
 				<div class="footer-right-nav">
 					<a href="<?php echo G5_BBS_URL; ?>/faq.php">FAQ</a>
@@ -76,27 +74,45 @@ if (!defined('_EYOOM_')) exit;
 					</div>
 				</div>
 				<?php } ?>
-				<strong class="text-black"><?php echo $bizinfo['bi_company_name']; ?></strong>
-				<span class="info-divider">|</span>
-				<span>대표 : <?php echo $bizinfo['bi_company_ceo']; ?></span>
-				<span class="info-divider">|</span>
-				<span>사업자등록번호 : <?php echo $bizinfo['bi_company_bizno']; ?></span>
-				<span class="info-divider">|</span>
-				<?php if($bizinfo['bi_company_sellno']) { ?>
-				<span>통신판매업번호 : <?php echo $bizinfo['bi_company_sellno']; ?></span>
-				<span class="info-divider">|</span>
-				<?php } ?>
-				<span>주소 : <?php echo $bizinfo['bi_company_zip']; ?> <?php echo $bizinfo['bi_company_addr1']; ?> <?php echo $bizinfo['bi_company_addr2']; ?> <?php echo $bizinfo['bi_company_addr3']; ?></span><br>
-				<span>E-mail : <a href="mailto:<?php echo $bizinfo['bi_cs_email']; ?>"><?php echo $bizinfo['bi_cs_email']; ?></a></span>
-				<span class="info-divider">|</span>
-				<span>T. <?php echo $bizinfo['bi_cs_tel1']; ?></span>
-				<span class="info-divider">|</span>
-				<span>F. <?php echo $bizinfo['bi_cs_fax']; ?></span>
+				<div class="footer-content">
+					<div class="text-white">
+						<span><?php echo $bizinfo['bi_company_name']; ?></span>
+						<span class="info-divider">|</span>
+						<span><?php echo $bizinfo['bi_cs_time']; ?></span>
+					</div>
+					<div class="text-gray">
+						<span>대표 : <?php echo $bizinfo['bi_company_ceo']; ?></span>
+						<span class="info-divider">|</span>
+						<span>사업자등록번호 : <?php echo $bizinfo['bi_company_bizno']; ?></span>
+					</div>
+				</div>
+				<div class="footer-content">
+					<div class="text-white">
+					<?php if($bizinfo['bi_company_sellno']) { ?>
+						<span>통신판매업번호 : <?php echo $bizinfo['bi_company_sellno']; ?></span>
+						<span class="info-divider">|</span>
+						<?php } ?>
+						<span>주소 : <?php echo $bizinfo['bi_company_zip']; ?> <?php echo $bizinfo['bi_company_addr1']; ?> <?php echo $bizinfo['bi_company_addr2']; ?> <?php echo $bizinfo['bi_company_addr3']; ?></span>
+					</div>
+					<div class="text-gray">
+					<span>E-mail : <a href="mailto:<?php echo $bizinfo['bi_cs_email']; ?>"><?php echo $bizinfo['bi_cs_email']; ?></a></span>
+						<span class="info-divider">|</span>
+						<span>T. <?php echo $bizinfo['bi_cs_tel1']; ?></span>
+						<span class="info-divider">|</span>
+						<span>F. <?php echo $bizinfo['bi_cs_fax']; ?></span>
+					</div>
+				</div>
+				
 			</div>
 
 			<div class="footer-copyright">
-				<span>Copyright </span>&copy; <strong class="text-black f-w-400"><?php echo $config['cf_title']; ?></strong>. All Rights Reserved.
+				<span>Copyright </span>&copy; <strong ><?php echo $config['cf_title']; ?></strong>. All Rights Reserved.
 			</div>
+			<div class="footer-bottom-nav">
+					<a href="<?php echo get_eyoom_pretty_url('page','provision'); ?>">서비스이용약관</a>
+					<a href="<?php echo get_eyoom_pretty_url('page','privacy'); ?>">개인정보처리방침</a>
+					<a href="<?php echo get_eyoom_pretty_url('page','noemail'); ?>">이메일무단수집거부</a>
+				</div>
 		</div>
 	</footer>
 	<?php /*----- footer 끝 -----*/ ?>

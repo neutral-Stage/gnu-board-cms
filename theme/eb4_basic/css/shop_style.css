@@ -249,7 +249,7 @@
 }
 
 /*---------- Footer ----------*/
-.footer {position:relative;border-top:1px solid rgba(0,0,0,0.15);}
+.footer {position:relative;border-top:1px solid rgba(0,0,0,0.15);background-color: #17191E;}
 .footer-top {margin-bottom:30px;padding:30px 0;border-bottom:1px solid rgba(0,0,0,0.15)}
 .footer-top:after {content:"";display:block;clear:both}
 .footer-nav {width:50%;float:left}
